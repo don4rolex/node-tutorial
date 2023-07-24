@@ -22,5 +22,4 @@ atlassian-ide-plugin.xml
 infra/sharedvolume/out/
 dump.rdb
 nb-configuration.xml
-target/
-/.idea/dictionaries/oladeji.xml
+node_modules
