@@ -2,7 +2,6 @@
 .DS_Store
 .idea/*
 atlassian-ide-plugin.xml
-infra/sharedvolume/out/
 dump.rdb
 nb-configuration.xml
 node_modules
