@@ -7,6 +7,10 @@ import authRouter from "./src/routers/authRouter.js";
 import adminRouter from "./src/routers/adminRouter.js";
 import sessionsRouter from "./src/routers/sessionsRouter.js";
 import {fileURLToPath} from "url";
+import passport from "passport";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import passportConfig from "./src/config/passport.js";
 
 const d = debug("app");
 
@@ -16,13 +20,17 @@ const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.set("views", "./src/views");
-app.set("view engine", "ejs");
-
 app.use(morgan("tiny"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(session({secret: "globlomantics"}));
+
+passportConfig(app);
+
+app.set("views", "./src/views");
+app.set("view engine", "ejs");
 
 app.use("/admin", adminRouter);
 app.use("/auth", authRouter);
